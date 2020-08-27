@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Vue JS </title>
+	<!-- Vue CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<input type="text" name="" v-model="message">
+		{{ message }}
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	// Vue New App
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hellow Vue!'
+		}
+	})
+</script>
+</html>
