@@ -9,8 +9,13 @@
 
 <body>
 	<div id="app">
-		<input type="text" name="" v-model="message">
-		{{ message }}
+		<ul >
+			<!-- <li v-for="name in names">{{ name }}</li> -->
+			<!-- Both are Same -->
+			<li v-for="name in names" v-text="name"> </li>
+		</ul>
+		<input type="" name="" id="add">
+		<button type="submit" id="button">Add</button>
 	</div>
 </body>
 
@@ -20,7 +25,16 @@
 	var app = new Vue({
 		el: '#app',
 		data: {
-			message: 'Hellow Vue!'
+			names: ['John', 'Doe', 'Alex', 'Peter']
+		},
+
+		mounted(){
+			// addEventListener
+			document.querySelector("#button").addEventListener('click', () =>{
+				let name = document.querySelector("#add");
+				app.names.push(name.value);
+				name.value = '';
+			});
 		}
 	})
 </script>
