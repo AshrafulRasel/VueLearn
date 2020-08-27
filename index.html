@@ -4,7 +4,6 @@
 <head>
 	<title>Vue JS </title>
 	<!-- Vue CDN -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -14,10 +13,12 @@
 			<!-- Both are Same -->
 			<li v-for="name in names" v-text="name"> </li>
 		</ul>
-		<input type="" name="" id="add">
-		<button type="submit" id="button">Add</button>
+		<input type="text" name="" id="add" v-model="newName">
+		<!-- <button type="submit" id="button" v-on:click="addName">Add</button> -->
+		<button type="submit" id="button" @click="addName">Add</button>
 	</div>
 </body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script type="text/javascript">
 
@@ -25,17 +26,17 @@
 	var app = new Vue({
 		el: '#app',
 		data: {
+			newName: '',
 			names: ['John', 'Doe', 'Alex', 'Peter']
 		},
 
-		mounted(){
-			// addEventListener
-			document.querySelector("#button").addEventListener('click', () =>{
-				let name = document.querySelector("#add");
-				app.names.push(name.value);
-				name.value = '';
-			});
-		}
+		methods: {
+			addName() {
+				this.names.push(this.newName);
+				this.newName = '';
+  			}
+		},
+
 	})
 </script>
 </html>
