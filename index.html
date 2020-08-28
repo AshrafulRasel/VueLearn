@@ -4,6 +4,10 @@
 <head>
 	<title>Vue JS </title>
 	<!-- Vue CDN -->
+	<style type="text/css">
+		.color-red{ color: red; }
+ 		.is-loading{ background: red }
+	</style>
 </head>
 
 <body>
@@ -15,10 +19,16 @@
 		</ul>
 		<input type="text" name="" id="add" v-model="newName">
 		<!-- <button type="submit" id="button" v-on:click="addName">Add</button> -->
-		<button type="submit" id="button" @click="addName">Add</button>
+		<!-- v-on:click shorthand @click -->
+		<button type="submit" :title="value2" id="button" @click="addName">Add</button>
+		<!-- v-bind:title shorthand :title -->
+
+		<h2 :class="className">Hellow World</h2>
+		<button :class="{ 'is-loading': isLoading }" @click="toggleClass" >Toogle</button>
+		<button :disabled="disable" @click="disableClass">Hellow</button>
 	</div>
 </body>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script type="text/javascript">
 
@@ -27,13 +37,25 @@
 		el: '#app',
 		data: {
 			newName: '',
-			names: ['John', 'Doe', 'Alex', 'Peter']
+			names: ['John', 'Doe', 'Alex', 'Peter'],
+			value2: 'Set value by javascript',
+			className: 'color-red',
+			isLoading: false,
+			disable: false,
 		},
 
 		methods: {
 			addName() {
 				this.names.push(this.newName);
 				this.newName = '';
+  			},
+
+  			toggleClass () {
+  				this.isLoading = true;
+  			},
+
+  			disableClass(){
+  				this.disable = true;
   			}
 		},
 
