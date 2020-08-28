@@ -12,20 +12,12 @@
 
 <body>
 	<div id="app">
-		<ul >
-			<!-- <li v-for="name in names">{{ name }}</li> -->
-			<!-- Both are Same -->
-			<li v-for="name in names" v-text="name"> </li>
-		</ul>
-		<input type="text" name="" id="add" v-model="newName">
-		<!-- <button type="submit" id="button" v-on:click="addName">Add</button> -->
-		<!-- v-on:click shorthand @click -->
-		<button type="submit" :title="value2" id="button" @click="addName">Add</button>
-		<!-- v-bind:title shorthand :title -->
-
-		<h2 :class="className">Hellow World</h2>
-		<button :class="{ 'is-loading': isLoading }" @click="toggleClass" >Toogle</button>
-		<button :disabled="disable" @click="disableClass">Hellow</button>
+		<h2>All Task</h2>
+		<li v-for="task in tasks"  v-text="task.description">
+		</li>
+		<h2>Incomplete Task</h2>
+		<li v-for="task in incompleteTask" v-text="task.description"></li>
+		
 	</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -36,29 +28,29 @@
 	var app = new Vue({
 		el: '#app',
 		data: {
-			newName: '',
-			names: ['John', 'Doe', 'Alex', 'Peter'],
-			value2: 'Set value by javascript',
-			className: 'color-red',
-			isLoading: false,
-			disable: false,
-		},
+			message: 'hellow world',
 
-		methods: {
-			addName() {
-				this.names.push(this.newName);
-				this.newName = '';
-  			},
+			tasks:[
+				{description: 'First task', completed: false },
+				{description: 'Second task', completed: true },
+				{description: 'Third task', completed: false },
+				{description: 'Fourth task', completed: true },
+				{description: 'Fifth task', completed: false },
+				{description: 'Sixth task', completed: false },
 
-  			toggleClass () {
-  				this.isLoading = true;
-  			},
+			]
+		}, 
 
-  			disableClass(){
-  				this.disable = true;
-  			}
-		},
+		computed:{
 
+			reverseMessage () {
+				return this.message.split('').reverse().join('');
+			}, 
+
+			incompleteTask(){
+				return this.tasks.filter(task => !task.completed);
+			}
+		}
 	})
 </script>
 </html>
